@@ -1,0 +1,38 @@
+{
+  "name": "veridapt",
+  "version": "0.1.0",
+  "description": "Privacy-Preserving ZK Compliance Oracle Network on Supra L1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "deploy": "node scripts/deploy.js"
+  },
+  "keywords": [
+    "compliance",
+    "zero-knowledge",
+    "kyc",
+    "aml",
+    "supra",
+    "blockchain",
+    "oracle"
+  ],
+  "author": "Veridapt Team",
+  "license": "MIT",
+  "devDependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.0.0",
+    "tailwindcss": "^3.0.0",
+    "jest": "^29.0.0"
+  },
+  "dependencies": {
+    "wagmi": "^2.0.0",
+    "viem": "^2.0.0",
+    "@wagmi/core": "^2.0.0"
+  }
+}
