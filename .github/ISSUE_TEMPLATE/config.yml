@@ -1,0 +1,29 @@
+name: Choose an Issue Type
+description: Select the type of issue you want to create
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Create a New Issue
+
+        Please choose the type of issue that best describes your needs:
+
+        - **🐛 [Bug Report](?template=bug_report.md)** — Report a defect or unexpected behavior
+        - **✨ [Feature Request](?template=feature_request.md)** — Suggest a new feature or enhancement
+        - **🔒 [Security Vulnerability](?template=security_vulnerability.md)** — Report a security issue (report privately!)
+
+        ---
+
+        ### Before You Submit
+
+        - [ ] I've searched for existing issues and found no duplicates
+        - [ ] I'm using the latest version of the code
+        - [ ] I've read the [CONTRIBUTING.md](../CONTRIBUTING.md)
+        - [ ] For security issues, I understand to report privately to security@veridapt.com
+
+        ---
+
+        **Need Help?**
+        - 📚 [Documentation](../docs/)
+        - 💬 [GitHub Discussions](https://github.com/Apexgen5/veridapt/discussions)
+        - 🌐 [Community](https://x.com/veridapt)
