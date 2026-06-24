@@ -1,4 +1,4 @@
-<svg width="280" height="260" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="veridapt-logo">
+<svg width="280" height="260" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="veridapt-logo-anime">
   <defs>
     <!-- Gradients -->
     <linearGradient id="shieldGrad" x1="50%" y1="20%" x2="50%" y2="100%" gradientUnits="objectBoundingBox">
@@ -11,7 +11,12 @@
       <stop offset="100%" stop-color="#0F0F1F"/>
     </linearGradient>
 
-    <!-- Glow Filter -->
+    <radialGradient id="checkmarkGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.2"/>
+    </radialGradient>
+
+    <!-- Glow Filters -->
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
       <feMerge>
@@ -20,32 +25,93 @@
       </feMerge>
     </filter>
 
-    <!-- Pulse Animation -->
+    <filter id="strongGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="checkGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Animations -->
     <style>
       @keyframes shieldPulse {
         0% { stroke-opacity: 0.6; }
         50% { stroke-opacity: 1; }
         100% { stroke-opacity: 0.6; }
       }
-      @keyframes lockPulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-        100% { transform: scale(1); }
+      
+      @keyframes checkmarkPulse {
+        0% { 
+          transform: scale(1);
+          filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+        }
+        50% { 
+          transform: scale(1.1);
+          filter: drop-shadow(0 0 16px rgba(124, 58, 237, 0.8));
+        }
+        100% { 
+          transform: scale(1);
+          filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+        }
       }
+      
+      @keyframes ringRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes orbitDots {
+        0% { opacity: 0.3; }
+        50% { opacity: 1; }
+        100% { opacity: 0.3; }
+      }
+      
       @keyframes circuitFlow {
         0% { stroke-dashoffset: 20; }
         100% { stroke-dashoffset: 0; }
       }
+
+      @keyframes lightTrail {
+        0% { stroke-dashoffset: 30; opacity: 0; }
+        50% { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+
       .shield-outline {
         animation: shieldPulse 3s ease-in-out infinite;
       }
-      .lock-group {
-        animation: lockPulse 2.5s ease-in-out infinite;
+
+      .checkmark-group {
+        animation: checkmarkPulse 2.5s ease-in-out infinite;
         transform-origin: 120px 125px;
       }
+
+      .ring-rotate {
+        animation: ringRotate 4s linear infinite;
+        transform-origin: 120px 125px;
+      }
+
+      .orbit-dot {
+        animation: orbitDots 2s ease-in-out infinite;
+      }
+
       .circuit-line {
         stroke-dasharray: 8 4;
         animation: circuitFlow 1.5s linear infinite;
+      }
+
+      .light-trail {
+        stroke-dasharray: 8 4;
+        animation: lightTrail 2s ease-in-out infinite;
       }
     </style>
   </defs>
@@ -74,7 +140,7 @@
     stroke="#00D4FF" 
     stroke-width="4"/>
 
-  <!-- Circuit accents -->
+  <!-- Circuit accents on sides -->
   <!-- Left -->
   <path d="M65 95 L78 95" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0s;"/>
   <path d="M65 115 L78 115" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.4s;"/>
@@ -82,46 +148,123 @@
   <path d="M162 95 L175 95" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.2s;"/>
   <path d="M162 115 L175 115" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.6s;"/>
 
-  <!-- Zero / ZK Symbol Group -->
-  <g class="lock-group">
-    <!-- Outer ring -->
+  <!-- Anime-style Verification Symbol Group -->
+  <g class="checkmark-group">
+    <!-- Glowing background circle -->
     <circle 
       cx="120" 
       cy="125" 
-      r="38" 
-      fill="none" 
-      stroke="#E0F2FE" 
-      stroke-width="9"/>
+      r="42" 
+      fill="url(#checkmarkGlow)" 
+      opacity="0.4"
+      filter="url(#strongGlow)"/>
 
-    <!-- Inner ring -->
+    <!-- Outer rotating ring -->
+    <g class="ring-rotate">
+      <circle 
+        cx="120" 
+        cy="125" 
+        r="40" 
+        fill="none" 
+        stroke="#00D4FF" 
+        stroke-width="2"
+        opacity="0.6"
+        stroke-dasharray="4 8"/>
+    </g>
+
+    <!-- Second rotating ring (opposite direction) -->
+    <g style="animation: ringRotate 6s linear infinite reverse; transform-origin: 120px 125px;">
+      <circle 
+        cx="120" 
+        cy="125" 
+        r="35" 
+        fill="none" 
+        stroke="#7C3AED" 
+        stroke-width="2"
+        opacity="0.5"
+        stroke-dasharray="6 10"/>
+    </g>
+
+    <!-- Inner bright circle -->
     <circle 
       cx="120" 
       cy="125" 
-      r="26" 
+      r="28" 
       fill="none" 
       stroke="#00D4FF" 
-      stroke-width="6"/>
+      stroke-width="3"
+      filter="url(#checkGlow)"/>
 
-    <!-- Lock body -->
-    <rect 
-      x="107" 
-      y="105" 
-      width="26" 
-      height="22" 
-      rx="4" 
-      fill="#E0F2FE" 
-      stroke="#00D4FF" 
-      stroke-width="3"/>
+    <!-- Anime-style checkmark (glowing) -->
+    <g filter="url(#checkGlow)">
+      <!-- Left diagonal of checkmark -->
+      <line 
+        x1="107" 
+        y1="125" 
+        x2="115" 
+        y2="133" 
+        stroke="#00D4FF" 
+        stroke-width="5" 
+        stroke-linecap="round"
+        opacity="0.9"/>
+      
+      <!-- Right diagonal of checkmark -->
+      <line 
+        x1="115" 
+        y1="133" 
+        x2="135" 
+        y2="113" 
+        stroke="#00D4FF" 
+        stroke-width="5" 
+        stroke-linecap="round"
+        opacity="0.9"/>
 
-    <!-- Vertical lock bar -->
-    <rect 
-      x="115" 
-      y="98" 
-      width="10" 
-      height="55" 
-      rx="2" 
-      fill="#0F0F1F"/>
+      <!-- Glow duplicate for enhanced effect -->
+      <line 
+        x1="107" 
+        y1="125" 
+        x2="115" 
+        y2="133" 
+        stroke="#7C3AED" 
+        stroke-width="2" 
+        stroke-linecap="round"
+        opacity="0.5"/>
+      
+      <line 
+        x1="115" 
+        y1="133" 
+        x2="135" 
+        y2="113" 
+        stroke="#7C3AED" 
+        stroke-width="2" 
+        stroke-linecap="round"
+        opacity="0.5"/>
+    </g>
+
+    <!-- Orbiting particles -->
+    <circle cx="160" cy="100" r="2.5" fill="#00D4FF" class="orbit-dot" style="animation-delay: 0s;"/>
+    <circle cx="155" cy="145" r="2.5" fill="#7C3AED" class="orbit-dot" style="animation-delay: 0.3s;"/>
+    <circle cx="120" cy="165" r="2.5" fill="#00D4FF" class="orbit-dot" style="animation-delay: 0.6s;"/>
+    <circle cx="80" cy="145" r="2.5" fill="#7C3AED" class="orbit-dot" style="animation-delay: 0.9s;"/>
+    <circle cx="85" cy="100" r="2.5" fill="#00D4FF" class="orbit-dot" style="animation-delay: 1.2s;"/>
   </g>
+
+  <!-- Light trail accents -->
+  <path 
+    d="M120 85 Q130 110 120 125" 
+    stroke="#00D4FF" 
+    stroke-width="2" 
+    fill="none"
+    class="light-trail"
+    style="animation-delay: 0s;"/>
+  
+  <path 
+    d="M140 120 Q125 130 120 140" 
+    stroke="#7C3AED" 
+    stroke-width="2" 
+    fill="none"
+    class="light-trail"
+    style="animation-delay: 0.5s;"/>
 
   <!-- Text -->
   <text 
