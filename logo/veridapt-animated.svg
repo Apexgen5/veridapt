@@ -1,0 +1,138 @@
+<svg width="280" height="260" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="veridapt-logo">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="shieldGrad" x1="50%" y1="20%" x2="50%" y2="100%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    
+    <linearGradient id="innerGrad" x1="30%" y1="30%" x2="80%" y2="80%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1A1A2E"/>
+      <stop offset="100%" stop-color="#0F0F1F"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Pulse Animation -->
+    <style>
+      @keyframes shieldPulse {
+        0% { stroke-opacity: 0.6; }
+        50% { stroke-opacity: 1; }
+        100% { stroke-opacity: 0.6; }
+      }
+      @keyframes lockPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+        100% { transform: scale(1); }
+      }
+      @keyframes circuitFlow {
+        0% { stroke-dashoffset: 20; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .shield-outline {
+        animation: shieldPulse 3s ease-in-out infinite;
+      }
+      .lock-group {
+        animation: lockPulse 2.5s ease-in-out infinite;
+        transform-origin: 120px 125px;
+      }
+      .circuit-line {
+        stroke-dasharray: 8 4;
+        animation: circuitFlow 1.5s linear infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Outer glowing shield outline -->
+  <path 
+    d="M120 30 L190 65 L190 130 C190 170 160 200 120 215 C80 200 50 170 50 130 L50 65 Z" 
+    fill="none" 
+    stroke="#00D4FF" 
+    stroke-width="18" 
+    opacity="0.85"
+    filter="url(#glow)"
+    class="shield-outline"/>
+
+  <!-- Main shield body -->
+  <path 
+    d="M120 35 L185 68 L185 128 C185 165 158 192 120 207 C82 192 55 165 55 128 L55 68 Z" 
+    fill="url(#shieldGrad)" 
+    stroke="#1E1B4B" 
+    stroke-width="8"/>
+
+  <!-- Inner dark shield -->
+  <path 
+    d="M120 55 L170 78 L170 125 C170 155 148 175 120 185 C92 175 70 155 70 125 L70 78 Z" 
+    fill="url(#innerGrad)" 
+    stroke="#00D4FF" 
+    stroke-width="4"/>
+
+  <!-- Circuit accents -->
+  <!-- Left -->
+  <path d="M65 95 L78 95" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0s;"/>
+  <path d="M65 115 L78 115" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.4s;"/>
+  <!-- Right -->
+  <path d="M162 95 L175 95" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.2s;"/>
+  <path d="M162 115 L175 115" stroke="#00D4FF" stroke-width="3" class="circuit-line" style="animation-delay: 0.6s;"/>
+
+  <!-- Zero / ZK Symbol Group -->
+  <g class="lock-group">
+    <!-- Outer ring -->
+    <circle 
+      cx="120" 
+      cy="125" 
+      r="38" 
+      fill="none" 
+      stroke="#E0F2FE" 
+      stroke-width="9"/>
+
+    <!-- Inner ring -->
+    <circle 
+      cx="120" 
+      cy="125" 
+      r="26" 
+      fill="none" 
+      stroke="#00D4FF" 
+      stroke-width="6"/>
+
+    <!-- Lock body -->
+    <rect 
+      x="107" 
+      y="105" 
+      width="26" 
+      height="22" 
+      rx="4" 
+      fill="#E0F2FE" 
+      stroke="#00D4FF" 
+      stroke-width="3"/>
+
+    <!-- Vertical lock bar -->
+    <rect 
+      x="115" 
+      y="98" 
+      width="10" 
+      height="55" 
+      rx="2" 
+      fill="#0F0F1F"/>
+  </g>
+
+  <!-- Text -->
+  <text 
+    x="120" 
+    y="222" 
+    text-anchor="middle" 
+    fill="#E0F2FE" 
+    font-family="Inter, system-ui, sans-serif" 
+    font-size="23" 
+    font-weight="700" 
+    letter-spacing="-0.6px"
+    opacity="0.95">VERIDAPT</text>
+
+</svg>
